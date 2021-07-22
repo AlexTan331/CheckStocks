@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+.td {
+  text-align: right;
+}
+
+.pageButton {
+  margin: 4px;
+}
+
+.buttonGroupCategory {
+  padding: 10px;
+}
+
+.categoryRadio {
+  margin: 5px;
+  color: black;
+  font-weight: 700;
+}

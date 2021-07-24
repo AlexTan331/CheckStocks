@@ -1,16 +1,13 @@
-import styles from "./customTable.module.css";
+import styles from "./customTable.module.scss";
+import { DAY_GAINERS, DAY_LOSERS, MOST_ACTIVES } from "../lib/stocks";
+import startCase from "lodash/startCase";
+import toLower from "lodash/toLower";
 
 export default function CustomTable({
-  data,
+  currentStocks,
   selectedCategory,
-  handleRadioChange,
-  handlePrev,
-  handleNext,
-  disablePrev,
-  disableNext,
+  handleCategoryChange,
 }) {
-  const quotes = data ? data[Object.keys(data)[1]] : undefined;
-
   return (
     <>
       <div className={styles.container}>
@@ -22,49 +19,49 @@ export default function CustomTable({
           <input
             type="radio"
             className="btn-check"
-            name="dayGainers"
-            id="dayGainers"
+            name={DAY_GAINERS}
+            id={DAY_GAINERS}
             autoComplete="off"
-            checked={selectedCategory === "dayGainers"}
-            onChange={handleRadioChange}
+            checked={selectedCategory === DAY_GAINERS}
+            onChange={handleCategoryChange}
           />
           <label
             className={`btn btn-outline-success ${styles.categoryRadio}`}
-            htmlFor="dayGainers"
+            htmlFor={DAY_GAINERS}
           >
-            Day Gainers
+            {startCase(toLower(DAY_GAINERS))}
           </label>
 
           <input
             type="radio"
             className="btn-check"
-            name="dayLosers"
-            id="dayLosers"
+            name={DAY_LOSERS}
+            id={DAY_LOSERS}
             autoComplete="off"
-            checked={selectedCategory === "dayLosers"}
-            onChange={handleRadioChange}
+            checked={selectedCategory === DAY_LOSERS}
+            onChange={handleCategoryChange}
           />
           <label
             className={`btn btn-outline-danger ${styles.categoryRadio}`}
-            htmlFor="dayLosers"
+            htmlFor={DAY_LOSERS}
           >
-            Day Losers
+            {startCase(toLower(DAY_LOSERS))}
           </label>
 
           <input
             type="radio"
             className="btn-check"
-            name="mostActives"
-            id="mostActives"
+            name={MOST_ACTIVES}
+            id={MOST_ACTIVES}
             autoComplete="off"
-            checked={selectedCategory === "mostActives"}
-            onChange={handleRadioChange}
+            checked={selectedCategory === MOST_ACTIVES}
+            onChange={handleCategoryChange}
           />
           <label
             className={`btn btn-outline-warning ${styles.categoryRadio}`}
-            htmlFor="mostActives"
+            htmlFor={MOST_ACTIVES}
           >
-            Most Actives
+            {startCase(toLower(MOST_ACTIVES))}
           </label>
         </div>
         <div className="table-responsive">
@@ -84,8 +81,8 @@ export default function CustomTable({
               </tr>
             </thead>
             <tbody>
-              {quotes ? (
-                quotes.map((stock, index) => {
+              {currentStocks ? (
+                currentStocks.map((stock, index) => {
                   let {
                     symbol,
                     currentPrice,
@@ -132,21 +129,6 @@ export default function CustomTable({
             </tbody>
           </table>
         </div>
-
-        <button
-          onClick={handlePrev}
-          type="button"
-          className={`btn btn-outline-secondary ${styles.pageButton} ${disablePrev}`}
-        >
-          prev
-        </button>
-        <button
-          onClick={handleNext}
-          type="button"
-          className={`btn btn-outline-success ${styles.pageButton} ${disableNext}`}
-        >
-          next
-        </button>
       </div>
     </>
   );

@@ -47,3 +47,8 @@ a {
   top: 10px;
   border-top: 5px solid red;
 }
+
+.pagination-container {
+  position: relative;
+  transform: translateY(-30px);
+}

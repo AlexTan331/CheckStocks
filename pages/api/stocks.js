@@ -15,13 +15,11 @@ export default async function handler(req, res) {
   const fileContent = fs.readFileSync(fullPath, "utf8");
   const jsonObj = JSON.parse(fileContent);
 
-  const result = symbols.split(",").map((symbol) => {
-    return jsonObj[symbol] || null;
+  const result = [];
+  symbols.split(",").forEach((symbol) => {
+    if (jsonObj.hasOwnProperty(symbol)) result.push(jsonObj[symbol]);
   });
-  if (!result) {
-    res.status(406).json({ quoteResponse: { result: [] } });
-    return;
-  }
+
   const stocksData = { quoteResponse: { result } };
 
   res.status(200).json({ ...stocksData });

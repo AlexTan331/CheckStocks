@@ -44,11 +44,34 @@ export default function Home({ suggestions }) {
       </main>
 
       <footer className={styles.footer}>
-        <h5>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "20px",
+          }}
+        >
+          Sources from Rapid API --
           <Link href="https://rapidapi.com/apidojo/api/yahoo-finance1/">
-            <a target="_blank">Source from Rapid API</a>
+            <a
+              style={{
+                marginLeft: "10px",
+              }}
+              target="_blank"
+            >
+              Yahoo Finance
+            </a>
           </Link>
-        </h5>
+          <Link href="https://rapidapi.com/twelvedata/api/twelve-data1/">
+            <a
+              style={{
+                marginLeft: "12px",
+              }}
+              target="_blank"
+            >
+              Twelve Data
+            </a>
+          </Link>
+        </div>
       </footer>
     </div>
   );

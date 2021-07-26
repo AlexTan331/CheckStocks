@@ -10,6 +10,30 @@
   background-color: rgb(180, 245, 223);
 }
 
+.h2 {
+  text-align: center;
+}
+
+.button {
+  margin: 30px;
+  text-align: center;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: translateY(370px);
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
 /* .container {
   min-height: 100vh;
   padding: 0 0.5rem;

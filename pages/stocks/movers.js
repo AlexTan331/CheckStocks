@@ -7,10 +7,12 @@ import Pagination from "../../components/pagination";
 import {
   getStockByNames,
   getMovers,
+  sortByDividendYield,
   STOCKS_PER_PAGE,
   DAY_GAINERS,
   DAY_LOSERS,
   MOST_ACTIVES,
+  getAllStocks,
 } from "../../lib/stocks";
 import { PAGE_NEIGHBOURS } from "../../lib/pagination";
 
@@ -29,7 +31,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ initalData }) {
+export default function Movers({ initalData }) {
   const { total, dayGainers } = initalData;
   const [totalStocks, setTotalStocks] = useState(total || null);
   const [currentStocks, setCurrentStocks] = useState(dayGainers || []);

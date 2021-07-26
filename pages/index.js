@@ -1,8 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.scss";
+import TypeAhead from "../components/typeAhead";
+import { getAllStocks } from "../lib/stocks";
 
-export default function Home() {
+export async function getStaticProps() {
+  const suggestions = await getAllStocks();
+  console.log(suggestions.length);
+  return {
+    props: {
+      suggestions,
+    },
+  };
+}
+
+export default function Home({ suggestions }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,13 +27,23 @@ export default function Home() {
       </Head>
 
       <main className="container">
-        <h2>Check Your Favorite Stocks With Ease</h2>
+        <h2 className={styles.h2}>Check Your Favorite Stocks With Ease</h2>
+
         <Link href="/stocks/movers">
-          <a>Check daily summary</a>
+          <button type="button" className={`btn btn-primary ${styles.button}`}>
+            <a>Check daily summary</a>
+          </button>
         </Link>
+
+        <Link href="#">
+          <button type="button" className={`btn btn-primary ${styles.button}`}>
+            <a>Get recommendation</a>
+          </button>
+        </Link>
+        <TypeAhead suggestions={suggestions} />
       </main>
 
-      <footer>
+      <footer className={styles.footer}>
         <h5>
           <Link href="https://rapidapi.com/apidojo/api/yahoo-finance1/">
             <a target="_blank">Source from Rapid API</a>

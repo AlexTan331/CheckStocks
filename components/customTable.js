@@ -1,7 +1,8 @@
-import styles from "./customTable.module.scss";
+import Link from "next/link";
 import { DAY_GAINERS, DAY_LOSERS, MOST_ACTIVES } from "../lib/stocks";
 import startCase from "lodash/startCase";
 import toLower from "lodash/toLower";
+import styles from "./customTable.module.scss";
 
 export default function CustomTable({
   currentStocks,
@@ -116,9 +117,11 @@ export default function CustomTable({
                       <td>{marketCap}</td>
                       <td>{stockExchange}</td>
                       <td>
-                        <button type="button" className="btn btn-info btn-sm">
-                          View Details
-                        </button>
+                        <Link href={`/stocks/${symbol.toLowerCase()}`}>
+                          <button type="button" className="btn btn-info btn-sm">
+                            View Details
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   );

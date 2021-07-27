@@ -6,7 +6,6 @@ import { getAllStocks } from "../lib/stocks";
 
 export async function getStaticProps() {
   const suggestions = await getAllStocks();
-  console.log(suggestions.length);
   return {
     props: {
       suggestions,

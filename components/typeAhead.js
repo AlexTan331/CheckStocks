@@ -12,7 +12,6 @@ export default function TypeAhead({ suggestions }) {
 
   const onChange = (evt) => {
     const value = evt.currentTarget.value;
-    console.log(value);
     const filteredSuggestions = suggestions.filter(
       (suggestion) =>
         suggestion.symbol.toUpperCase().indexOf(value.toUpperCase()) > -1
@@ -24,7 +23,6 @@ export default function TypeAhead({ suggestions }) {
   };
 
   const onClick = (index) => {
-    console.log("here");
     setUserInput(filteredSuggestions[index].symbol);
     setFilteredSuggestions([]);
     setShowSuggestions(false);
@@ -108,7 +106,7 @@ export default function TypeAhead({ suggestions }) {
 
   return (
     <Fragment>
-      <div className="input-group mb-3">
+      <div className={`input-group mb-3 ${styles.container}`}>
         <input
           type="text"
           className="form-control"
@@ -120,9 +118,7 @@ export default function TypeAhead({ suggestions }) {
         />
         <div className="input-group-append">
           <button
-            className={`btn btn-outline-secondary ${
-              userInput ? "" : "disabled"
-            }`}
+            className={`btn btn-success ${userInput ? "" : "disabled"}`}
             type="button"
             onClick={(e) => onSearch(e)}
           >

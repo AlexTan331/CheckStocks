@@ -1,0 +1,10 @@
+.button {
+  margin: 5px;
+  font-size: 13px;
+}
+.button::before {
+  content: "🗘";
+}
+.button:hover {
+  background-color: #fff;
+}

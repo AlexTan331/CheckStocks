@@ -8,3 +8,17 @@
   align-items: center;
   background-color: rgba(180, 245, 223, 0.753);
 }
+
+.button {
+  margin: 10px;
+  font-weight: 700;
+
+  &:hover {
+    color: black;
+    background-color: rgb(111, 245, 231);
+  }
+
+  &::before {
+    content: "◀";
+  }
+}

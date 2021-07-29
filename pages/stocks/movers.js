@@ -151,8 +151,8 @@ export default function Movers({ initalData }) {
           </div>
         </div>
         <Link href="/">
-          <button type="button" className={`btn btn-primary`}>
-            <a>Go Back Home</a>
+          <button type="button" className={`btn btn-warning ${styles.button}`}>
+            <a>Home</a>
           </button>
         </Link>
       </main>

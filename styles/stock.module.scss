@@ -11,16 +11,26 @@
   text-align: center;
   border-width: 1px;
   border-style: double;
-  width: 100%;
   height: 500px;
-  margin: 20px 0;
+  margin: 20px 40px;
 }
 
-.button {
-  margin: 20px;
+.chartContainer {
 }
 
 .chartSection {
+  margin: 25px;
+}
+
+.button {
+  margin: 10px;
+  background-color: rgb(111, 245, 231);
+  color: black;
+  font-weight: 700;
+}
+
+.button::before {
+  content: "◀";
 }
 
 .footer {

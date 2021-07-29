@@ -1,10 +1,23 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import CanvasJSReact from "../scripts/canvasjs.stock.react";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSStockChart = CanvasJSReact.CanvasJSStockChart;
-import { convertArrayToDataPoints } from "../lib/stocks";
+import { convertArrayToDataPoints, getStockStatistics } from "../lib/stocks";
 
 class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDayChart: this.props.isDayChart,
+      stockStats: this.props.stockStats,
+      show: true,
+    };
+  }
+
+  handleToggle = () => {
+    this.setState({ show: !this.state.show });
+  };
+
   render() {
     const {
       volumePoints,
@@ -13,21 +26,95 @@ class Chart extends React.Component {
       openPoints,
       closePoints,
       allDataPoints,
-    } = convertArrayToDataPoints(this.props.stockStats);
+    } = convertArrayToDataPoints(this.state.stockStats);
 
-    const options = {
+    const historyChartOptions = {
       title: {
-        text: "History Price",
+        text: "Hitory Statistics",
+        fontSize: 25,
         padding: 5,
       },
 
       animationEnabled: true,
-      theme: "dark1",
+      theme: "dark2",
 
       charts: [
         {
           title: {
-            text: "History Price",
+            text: "Price",
+          },
+
+          axisY: {
+            title: "High/Low price",
+            interlacedColor: "#F8F1",
+            tickLength: 10,
+            prefix: "$",
+            labelAutoFit: true,
+            tickThickness: 5,
+            labelAutoFit: true,
+            includeZero: false,
+          },
+          data: [
+            {
+              type: "candlestick",
+              yValueFormatString: "$#,###.##",
+              dataPoints: allDataPoints,
+            },
+          ],
+        },
+        {
+          title: {
+            text: "Volume",
+            padding: 5,
+          },
+
+          axisY: {
+            title: "Volume",
+            interlacedColor: "#F8F1",
+            tickLength: 10,
+            labelAutoFit: true,
+            tickThickness: 5,
+            labelAutoFit: true,
+            includeZero: false,
+          },
+
+          data: [
+            {
+              type: "line",
+              dataPoints: volumePoints,
+            },
+          ],
+        },
+      ],
+      rangeSelector: {
+        buttonStyle: {
+          backgroundColor: "#000000",
+        },
+      },
+      navigator: {
+        dynamicUpdate: false,
+        slider: {
+          minimum: new Date("2018-07-31"),
+          maximum: new Date(),
+        },
+      },
+    };
+
+    const dayChartOptions = {
+      title: {
+        text: "Daily Price",
+        padding: 5,
+        fontSize: 25,
+      },
+
+      animationEnabled: true,
+      theme: "dark2",
+
+      charts: [
+        {
+          title: {
+            text: "High/Low Price",
+            fontSize: 15,
           },
           toolTip: {
             shared: true,
@@ -35,6 +122,12 @@ class Chart extends React.Component {
           },
           axisY: {
             prefix: "$",
+            title: "High/Low price",
+            tickThickness: 5,
+            tickLength: 10,
+            margin: 20,
+            labelAutoFit: true,
+            titleFontSize: 12,
           },
           data: [
             {
@@ -51,54 +144,16 @@ class Chart extends React.Component {
             },
           ],
         },
-        {
-          title: { text: "Volume", padding: 5 },
-          data: [
-            {
-              type: "line",
-              dataPoints: volumePoints,
-            },
-          ],
-        },
       ],
       rangeSelector: {
-        buttonStyle: {
-          backgroundColor: "#000000",
-        },
         buttons: [
-          {
-            range: 1,
-            rangeType: "week",
-            label: "1 Week",
-          },
-          {
-            range: 1,
-            rangeType: "month",
-            label: "1 Month",
-          },
-          {
-            range: 2,
-            rangeType: "month",
-            label: "2 Months",
-          },
-          {
-            range: 6,
-            rangeType: "month",
-            label: "6 Months",
-          },
-          {
-            range: 1,
-            rangeType: "year",
-            label: "1 Year",
-          },
           {
             rangeType: "all",
             label: "Show All", //Change it to "All"
           },
         ],
-        inputFields: {
-          startValue: new Date("2019-08-02"),
-          endValue: new Date("2021-07-27"),
+        buttonStyle: {
+          backgroundColor: "#000000",
         },
       },
       navigator: {
@@ -107,10 +162,6 @@ class Chart extends React.Component {
             dataPoints: openPoints,
           },
         ],
-        slider: {
-          minimum: new Date("2020-01-17"),
-          maximum: new Date("2020-07-27"),
-        },
       },
     };
     const containerProps = {
@@ -119,13 +170,27 @@ class Chart extends React.Component {
       margin: "auto",
     };
     return (
-      <div>
-        <CanvasJSStockChart
-          options={options}
-          containerProps={containerProps}
-          onRef={(ref) => (this.stockChart = ref)}
-        />
-      </div>
+      <Fragment>
+        <p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={this.handleToggle}
+          >
+            {this.state.show ? "Close" : "Open"} Chart
+          </button>
+        </p>
+
+        {this.state.show && (
+          <CanvasJSStockChart
+            options={
+              this.state.isDayChart ? dayChartOptions : historyChartOptions
+            }
+            containerProps={containerProps}
+            onRef={(ref) => (this.stockChart = ref)}
+          />
+        )}
+      </Fragment>
     );
   }
 }

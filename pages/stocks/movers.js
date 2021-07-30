@@ -159,7 +159,10 @@ export default function Movers({ initalData }) {
 
       <footer>
         <h5>
-          <Link href="https://rapidapi.com/apidojo/api/yahoo-finance1/">
+          <Link
+            href="https://rapidapi.com/apidojo/api/yahoo-finance1/"
+            passHref
+          >
             <a target="_blank">Source from Rapid API</a>
           </Link>
         </h5>

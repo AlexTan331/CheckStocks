@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   digitSeparatorWithComma,
   getRealTimePrice,
@@ -69,7 +70,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
         {stockNews.status === "OK" ? (
           stockNews.results.map((news) => (
             <div className={styles.news}>
-              <Link href={news.publisher.homepage_url}>
+              <Link href={news.publisher.homepage_url} passHref>
                 <a target="_blank">
                   <span className={styles.newsPublisher}>
                     {news.publisher.name}
@@ -77,7 +78,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
                 </a>
               </Link>
 
-              <Link href={news.article_url}>
+              <Link href={news.article_url} passHref>
                 <a target="_blank" className={styles.newsTitle}>
                   <span>{news.title}</span>
                 </a>
@@ -135,7 +136,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
           <div className={styles.similarStock}>
             {similar.length ? (
               similar.map((stock, index) => (
-                <Link href={`/stocks/${stock.toLowerCase()}`}>
+                <Link href={`/stocks/${stock.toLowerCase()}`} passHref>
                   <a>
                     <span
                       className={`card text-white bg-dark ${styles.stockBody}`}
@@ -165,7 +166,10 @@ export default function StockDashboard({ stockInfo, stockNews }) {
             Market Cap <span className={styles.value}>${marketCap}</span>
           </li>
           <li className="list-group-item" key="cash">
-            Totol Cash <span className={styles.value}>${totalCash}</span>
+            Totol Cash{" "}
+            <span className={styles.value}>
+              ${digitSeparatorWithComma(totalCash)}
+            </span>
           </li>
           <li className="list-group-item" key="high">
             52-week High{" "}

@@ -54,7 +54,7 @@ export default function Stock({ initalData }) {
           <title>{stockInfo.stockDetail[0].symbol}</title>
         </Head>
 
-        <Link href="/">
+        <Link href="/" passHref>
           <button
             type="button"
             className={`btn btn-outline-warning ${styles.homeButton}`}
@@ -63,7 +63,7 @@ export default function Stock({ initalData }) {
           </button>
         </Link>
 
-        <Link href="/movers">
+        <Link href="/movers" passHref>
           <button
             type="button"
             className={`btn btn-outline-warning ${styles.moverButton}`}
@@ -101,7 +101,10 @@ export default function Stock({ initalData }) {
             }}
           >
             Sources from Rapid API --
-            <Link href="https://rapidapi.com/apidojo/api/yahoo-finance1/">
+            <Link
+              href="https://rapidapi.com/apidojo/api/yahoo-finance1/"
+              passHref
+            >
               <a
                 style={{
                   marginLeft: "10px",
@@ -111,7 +114,10 @@ export default function Stock({ initalData }) {
                 Yahoo Finance
               </a>
             </Link>
-            <Link href="https://rapidapi.com/twelvedata/api/twelve-data1/">
+            <Link
+              href="https://rapidapi.com/twelvedata/api/twelve-data1/"
+              passHref
+            >
               <a
                 style={{
                   marginLeft: "12px",

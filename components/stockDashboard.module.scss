@@ -150,14 +150,15 @@
     text-align: right;
     font-weight: 800;
   }
+
   .similarSection {
     position: relative;
     width: 300px;
-    height: 230px;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    top: 0px;
+    // padding: 5px;
+    top: -10px;
 
     .similarTitle {
       position: relative;

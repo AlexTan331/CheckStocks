@@ -110,7 +110,7 @@ export default function Movers({ initalData }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Check Your Stocks</title>
+        <title>Movers of the day</title>
         <meta
           name="description"
           content="Check Your Favorite Stocks With Ease"
@@ -119,7 +119,7 @@ export default function Movers({ initalData }) {
       </Head>
 
       <main className="container">
-        <h2>Check out today's gainers / losers / actives</h2>
+        <h2>Check out gainers / losers / actives of the day</h2>
         <CustomTable
           currentStocks={currentStocks}
           handleCategoryChange={handleCategoryChange}

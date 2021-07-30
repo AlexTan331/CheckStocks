@@ -11,7 +11,7 @@
   text-align: center;
   border-width: 1px;
   border-style: double;
-  height: 500px;
+  height: 580px;
   margin: 20px 40px;
 }
 
@@ -22,17 +22,21 @@
   margin: 25px;
 }
 
-.button {
+.homeButton,
+.moverButton {
   margin: 10px;
   background-color: rgb(111, 245, 231);
   color: black;
   font-weight: 700;
 }
 
-.button::before {
+.homeButton::before {
   content: "◀";
 }
 
+.moverButton::after {
+  content: "▶";
+}
 .footer {
   display: flex;
   justify-content: center;

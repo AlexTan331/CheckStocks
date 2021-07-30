@@ -1,16 +1,202 @@
-.button {
-  margin: 5px;
-  font-size: 13px;
-}
-.button::before {
-  content: "🗘";
-}
-.button:hover {
-  background-color: #fff;
-}
-
-.companyName {
+.nameContainer {
   position: absolute;
   top: 0;
   left: 0;
+  margin: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  display: flex;
+  flex-direction: column;
+
+  .companySymbol {
+    font-weight: 300;
+    font-size: 18px;
+  }
+
+  .companyName {
+    font-weight: 700;
+    font-size: 25px;
+  }
+
+  .price {
+    font-size: 18px;
+
+    .refreshButton {
+      margin: 5px;
+      font-size: 10px;
+    }
+    .refreshButton::before {
+      content: "🗘";
+    }
+    .refreshButton:hover {
+      background-color: #fff;
+    }
+  }
+}
+
+.newsContainer {
+  position: relative;
+  width: 27%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  right: 8px;
+  overflow-y: scroll;
+
+  .containerTitle {
+    position: relative;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .news {
+    position: relative;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    background-color: #fff;
+    margin: 6px;
+    padding: 5px 5px 30px 5px;
+
+    .newsPublisher {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-weight: 700;
+      margin: 3px;
+      font-size: 12px;
+
+      &:hover {
+        color: rgb(168, 168, 243);
+      }
+    }
+
+    .newsTitle {
+      overflow: hidden;
+      width: 60%;
+      transform: translateY(20px);
+      font-size: 10px;
+      text-align: left;
+      height: 90%;
+      padding: 3px;
+      text-decoration: none;
+      color: #000;
+
+      &:hover {
+        color: rgb(133, 175, 171);
+      }
+    }
+
+    .newsImage {
+      width: 70px;
+      height: 60%;
+      border: 1px solid black;
+      background-color: #fff;
+      position: absolute;
+      right: 0;
+      margin-right: 3px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        font-size: 13px;
+      }
+    }
+
+    .date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 10px;
+      overflow: hidden;
+      text-align: left;
+    }
+  }
+}
+
+.aboutContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-family: "Merriweather", serif;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 100%;
+
+  .aboutTitle {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .description {
+    max-height: 200px;
+    text-align: left;
+    overflow-y: scroll;
+  }
+
+  .website {
+    font-size: 13px;
+    text-decoration: none;
+    margin-left: 3px;
+  }
+
+  .value {
+    padding-left: 80px;
+    text-align: right;
+    font-weight: 800;
+  }
+  .similarSection {
+    position: relative;
+    width: 300px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    top: 0px;
+
+    .similarTitle {
+      position: relative;
+      font-weight: 700;
+      font-size: 17px;
+      text-align: left;
+      bottom: -10px;
+    }
+
+    .similarStock {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+
+      .stockBody {
+        width: 90%;
+        margin: 10px;
+        text-align: center;
+        padding: 8px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.statsContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .value {
+    padding-left: 50px;
+    text-align: right;
+    font-weight: 700;
+  }
 }

@@ -9,6 +9,7 @@ import {
   getAllStockIds,
   getStockStatistics,
   getStockForDashboard,
+  getStockNews,
 } from "../../lib/stocks";
 import styles from "../../styles/stock.module.scss";
 import StockDashboard from "../../components/stockDashboard";
@@ -22,9 +23,10 @@ export async function getStaticProps({ params }) {
     stockStats: await getStockStatistics(params.id, false),
     stockStatsDaily: await getStockStatistics(params.id, true),
     stockInfo: {
-      stockDetail: await getStockByNames([params.id.toUpperCase()]),
+      stockDetail: await getStockByNames([params.id]),
       dashboardInfo: await getStockForDashboard(params.id),
     },
+    stockNews: await getStockNews(params.id),
   };
 
   return {
@@ -43,7 +45,7 @@ export async function getStaticPaths() {
 }
 
 export default function Stock({ initalData }) {
-  const { stockInfo, stockStats, stockStatsDaily } = initalData;
+  const { stockInfo, stockStats, stockStatsDaily, stockNews } = initalData;
 
   return (
     <Fragment>
@@ -55,14 +57,23 @@ export default function Stock({ initalData }) {
         <Link href="/">
           <button
             type="button"
-            className={`btn btn-outline-warning ${styles.button}`}
+            className={`btn btn-outline-warning ${styles.homeButton}`}
           >
             <a>Home</a>
           </button>
         </Link>
 
+        <Link href="/movers">
+          <button
+            type="button"
+            className={`btn btn-outline-warning ${styles.moverButton}`}
+          >
+            <a>Movers</a>
+          </button>
+        </Link>
+
         <div className={styles.infoSection}>
-          <StockDashboard stockInfo={stockInfo} />
+          <StockDashboard stockInfo={stockInfo} stockNews={stockNews} />
         </div>
 
         <div className={styles.chartContainer}>

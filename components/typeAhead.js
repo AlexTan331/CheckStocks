@@ -53,12 +53,12 @@ export default function TypeAhead({ suggestions }) {
 
     if (SYMBOL_REG_EXPRESS.test(userInput) === false) {
       alert(
-        "Ticker's symbol should only contain letter. Please double check your input..."
+        "Ticker symbol should only contain letter. Please double check your input..."
       );
       return;
     }
 
-    const data = await getStockByNames([userInput.toUpperCase()]);
+    const data = await getStockByNames([userInput]);
 
     if (!data.length)
       alert("Sorry... There is no recorded information about this ticker.");

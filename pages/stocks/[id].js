@@ -8,7 +8,7 @@ import {
   getStockByNames,
   getAllStockIds,
   getStockStatistics,
-  getRealTimePrice,
+  getStockForDashboard,
 } from "../../lib/stocks";
 import styles from "../../styles/stock.module.scss";
 import StockDashboard from "../../components/stockDashboard";
@@ -19,9 +19,12 @@ const Chart = dynamic(() => import("../../components/chart"), {
 
 export async function getStaticProps({ params }) {
   const initalData = {
-    stockStats: await getStockStatistics(params.id.toUpperCase(), false),
-    stockStatsDaily: await getStockStatistics(params.id.toUpperCase(), true),
-    stockInfo: await getStockByNames([params.id.toUpperCase()]),
+    stockStats: await getStockStatistics(params.id, false),
+    stockStatsDaily: await getStockStatistics(params.id, true),
+    stockInfo: {
+      stockDetail: await getStockByNames([params.id.toUpperCase()]),
+      dashboardInfo: await getStockForDashboard(params.id),
+    },
   };
 
   return {
@@ -46,7 +49,7 @@ export default function Stock({ initalData }) {
     <Fragment>
       <div className={styles.container}>
         <Head>
-          <title>{stockInfo[0].symbol}</title>
+          <title>{stockInfo.stockDetail[0].symbol}</title>
         </Head>
 
         <Link href="/">
@@ -59,21 +62,21 @@ export default function Stock({ initalData }) {
         </Link>
 
         <div className={styles.infoSection}>
-          <StockDashboard stockInfo={stockInfo[0]} />
+          <StockDashboard stockInfo={stockInfo} />
         </div>
 
         <div className={styles.chartContainer}>
           <div className={styles.chartSection}>
             <Chart
               stockStats={stockStatsDaily}
-              symbol={stockInfo[0].symbol}
+              symbol={stockInfo.stockDetail[0].symbol}
               isDayChart={true}
             />
           </div>
           <div className={styles.chartSection}>
             <Chart
               stockStats={stockStats}
-              symbol={stockInfo[0].symbol}
+              symbol={stockInfo.stockDetail[0].symbol}
               isDayChart={false}
             />
           </div>

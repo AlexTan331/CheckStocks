@@ -1,28 +1,42 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getRealTimePrice, setFloatingPoint } from "../lib/stocks";
+import Image from "next/image";
 import styles from "./stockDashboard.module.scss";
 
 export default function StockDashboard({ stockInfo }) {
+  const { stockDetail, dashboardInfo } = stockInfo;
   const {
-    symbol,
-    afterHoursPrice,
-    currentPrice,
-    priceRange,
-    dividendYield,
+    industry,
+    sector,
     marketCap,
-    stockExchange,
-  } = stockInfo;
+    employees,
+    ceo,
+    url,
+    description,
+    name,
+    symbol,
+    hq_state,
+    hq_country,
+    tags,
+    similar,
+  } = dashboardInfo;
+  console.log(dashboardInfo);
+  // const [realTimePrice, setRealTimePrice] = useState(0);
 
-  const [realTimePrice, setRealTimePrice] = useState(currentPrice);
+  // useEffect(async () => {
+  //   const currentPrice = await getRealTimePrice(symbol.toUpperCase());
+  //   setRealTimePrice(currentPrice);
+  // }, []);
 
-  const handleClick = async () => {
-    const price = await getRealTimePrice(symbol);
-    setRealTimePrice(setFloatingPoint(price));
-  };
+  // const handleClick = async () => {
+  //   const price = await getRealTimePrice(symbol.toUpperCase());
+  //   setRealTimePrice(setFloatingPoint(price));
+  // };
 
   return (
     <Fragment>
-      <h5>Symbol: {symbol}</h5>
+      {/* <h2 className={styles.companyName}>{symbol}</h2> */}
+      {/* <h5>Symbol: {symbol}</h5>
       <h5>
         Cuurent Price: {realTimePrice}{" "}
         <button
@@ -37,7 +51,7 @@ export default function StockDashboard({ stockInfo }) {
       <h5>Price Range: {priceRange}</h5>
       <h5>Dividend Yield: {dividendYield}</h5>
       <h5>Market Cap: {marketCap}</h5>
-      <h5>Stock Exchange: {stockExchange}</h5>
+      <h5>Stock Exchange: {stockExchange}</h5> */}
     </Fragment>
   );
 }

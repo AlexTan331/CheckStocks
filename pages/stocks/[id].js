@@ -61,7 +61,7 @@ export default function Stock({ initalData }) {
           </button>
         </Link>
 
-        <Link href="/movers" passHref>
+        <Link href="/stocks/movers" passHref>
           <button
             type="button"
             className={`btn btn-outline-warning ${styles.moverButton}`}

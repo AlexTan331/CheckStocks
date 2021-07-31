@@ -1,7 +1,5 @@
-import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Script from "next/script";
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
 import {

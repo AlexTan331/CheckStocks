@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,6 +10,8 @@ import {
 import styles from "./stockDashboard.module.scss";
 
 export default function StockDashboard({ stockInfo, stockNews }) {
+  const router = useRouter();
+  console.log(router.asPath);
   const { stockDetail, dashboardInfo } = stockInfo;
   const {
     employees,
@@ -68,11 +71,11 @@ export default function StockDashboard({ stockInfo, stockNews }) {
       <div className={styles.newsContainer}>
         <span className={styles.containerTitle}>Relevant News</span>
         {stockNews.status === "OK" ? (
-          stockNews.results.map((news) => (
-            <div className={styles.news}>
-              <Link href={news.publisher.homepage_url} passHref>
+          stockNews.results.map((news, index) => (
+            <div className={styles.news} key={index}>
+              <Link href={news.publisher.homepage_url} passHref key={index}>
                 <a target="_blank">
-                  <span className={styles.newsPublisher}>
+                  <span className={styles.newsPublisher} key={index}>
                     {news.publisher.name}
                   </span>
                 </a>
@@ -85,7 +88,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
               </Link>
 
               <div className={styles.newsImage}>
-                <img src={news.image_url} alt="article image" />
+                {/* <img src={news.image_url} alt="article image" /> */}
               </div>
 
               <span className={styles.date}>{news.published_utc}</span>
@@ -99,7 +102,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
       <div className={styles.aboutContainer}>
         <span className={styles.aboutTitle}>
           About {symbol}{" "}
-          <Link href={url}>
+          <Link href={url} passHref>
             <a target="_blank" className={styles.website}>
               (Website)
             </a>
@@ -136,7 +139,11 @@ export default function StockDashboard({ stockInfo, stockNews }) {
           <div className={styles.similarStock}>
             {similar.length ? (
               similar.map((stock, index) => (
-                <Link href={`/stocks/${stock.toLowerCase()}`} passHref>
+                <Link
+                  href={`/stocks/${stock.toLowerCase()}`}
+                  passHref
+                  key={index}
+                >
                   <a>
                     <span
                       className={`card text-white bg-dark ${styles.stockBody}`}

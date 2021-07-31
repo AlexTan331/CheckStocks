@@ -98,7 +98,7 @@ export default function TypeAhead({ suggestions }) {
     } else {
       suggestionsListComponent = (
         <div className={styles.noSuggestions}>
-          <em>No suggestions, you're on your own!</em>
+          <em>No suggestions, you are on your own!</em>
         </div>
       );
     }
@@ -110,8 +110,8 @@ export default function TypeAhead({ suggestions }) {
         <input
           type="text"
           className="form-control"
-          placeholder="Enter ticker's symbol"
-          aria-label="Enter ticker's symbol"
+          placeholder="Enter the ticker symbol"
+          aria-label="Enter the ticker symbol"
           onChange={(e) => onChange(e)}
           onKeyDown={(e) => onKeyDown(e)}
           value={userInput}

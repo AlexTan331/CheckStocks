@@ -117,7 +117,7 @@ export default function CustomTable({
                       <td>{marketCap}</td>
                       <td>{stockExchange}</td>
                       <td>
-                        <Link href={`/stocks/${symbol.toLowerCase()}`}>
+                        <Link href={`/stocks/${symbol.toLowerCase()}`} passHref>
                           <button type="button" className="btn btn-info btn-sm">
                             View Details
                           </button>

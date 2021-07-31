@@ -150,7 +150,7 @@ export default function Movers({ initalData }) {
             />
           </div>
         </div>
-        <Link href="/">
+        <Link href="/" passHref>
           <button type="button" className={`btn btn-warning ${styles.button}`}>
             <a>Home</a>
           </button>

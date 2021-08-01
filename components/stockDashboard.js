@@ -88,7 +88,7 @@ export default function StockDashboard({ stockInfo, stockNews }) {
               </Link>
 
               <div className={styles.newsImage}>
-                {/* <img src={news.image_url} alt="article image" /> */}
+                <img src={news.image_url} alt="article image" />
               </div>
 
               <span className={styles.date}>{news.published_utc}</span>
